@@ -15,13 +15,15 @@ if tf.executing_eagerly():
 
 IMG_SIZE = 224
 
-EPOCHS = 200
+EPOCHS = 50
 
 BATCH_SIZE = 32
 
-DEBUG = True
+DEBUG = False
 
 DIVIDER = 1
+
+SAVE_MODEL = True
 
 TRAIN_END = 20000
 TEST_START = TRAIN_END + 1
@@ -131,7 +133,8 @@ def main():
 
     print("final_model (test score): {}".format(final_model_score))
 
-
+    if SAVE_MODEL:
+        final_model.save("/export")
     """
     data layers
     5: rgb value
