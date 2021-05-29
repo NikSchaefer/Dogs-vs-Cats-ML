@@ -1,4 +1,3 @@
-import pandas as pd
 import numpy as np
 from tensorflow.python.keras.applications.vgg16 import VGG16
 import tensorflow as tf
