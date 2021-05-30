@@ -124,13 +124,14 @@ def main():
     final_model_score = final_model.evaluate(
         x_train, y_train, batch_size=BATCH_SIZE
     )
+    # prev [0.01761356658373552, 0.9932
     print("final_model (train score): {}".format(final_model_score))
     print("final_model (train score): {}".format(final_model.metrics_names))
 
     final_model_score = final_model.evaluate(
         x_test, y_test, batch_size=BATCH_SIZE
     )
-
+    # prev  [0.39406143480716793, 0.9333867]
     print("final_model (test score): {}".format(final_model_score))
     print("final_model (test score): {}".format(final_model.metrics_names))
 
