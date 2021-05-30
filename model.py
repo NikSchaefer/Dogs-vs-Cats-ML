@@ -15,17 +15,17 @@ if tf.executing_eagerly():
 IMG_SIZE = 224
 
 EPOCHS = 50
-
 BATCH_SIZE = 32
 
 DEBUG = False
-
 DIVIDER = 1
 
 SAVE_MODEL = True
+SAVE_PATH = "C:\\Users\\schaefer\\Desktop\\ML\\Dogs-vs-Cats-ML\\save\\model.ckpt"
 
 TRAIN_END = 20000
 TEST_START = TRAIN_END + 1
+
 if DEBUG:
     EPOCHS = 1
     DIVIDER = BATCH_SIZE
@@ -125,23 +125,17 @@ def main():
         x_train, y_train, batch_size=BATCH_SIZE
     )
     print("final_model (train score): {}".format(final_model_score))
+    print("final_model (train score): {}".format(final_model.metrics_names))
 
     final_model_score = final_model.evaluate(
         x_test, y_test, batch_size=BATCH_SIZE
     )
 
     print("final_model (test score): {}".format(final_model_score))
+    print("final_model (test score): {}".format(final_model.metrics_names))
 
     if SAVE_MODEL:
-        final_model.save("/export")
-    """
-    data layers
-    5: rgb value
-    4: 224 image
-    3: images
-    2: batch sizes
-    1: 
-    """
+        final_model.save(SAVE_PATH)
 
 
 if __name__ == "__main__":
