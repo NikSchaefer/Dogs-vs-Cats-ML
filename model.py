@@ -20,7 +20,6 @@ BATCH_SIZE = 32
 DEBUG = False
 DIVIDER = 1
 
-SAVE_MODEL = True
 SAVE_PATH = "C:\\Users\\schaefer\\Desktop\\ML\\Dogs-vs-Cats-ML\\save\\model.ckpt"
 
 TRAIN_END = 20000
@@ -105,14 +104,8 @@ def main():
     )
 
     score = top_layer_model.evaluate(x_test_feature_map, y_test, batch_size=BATCH_SIZE)
-
-    print("Top layer model training on test: {}".format(score))
-
     inputs = Input(shape=(IMG_SIZE, IMG_SIZE, 3))
     vg_output = vgg16(inputs)
-
-    print("vg_output: {}".format(vg_output.shape))
-
     model_predictions = top_layer_model(vg_output)
 
     final_model = Model(inputs=inputs, outputs=model_predictions)
@@ -120,24 +113,18 @@ def main():
     final_model.compile(
         loss="categorical_crossentropy", optimizer=adamax, metrics=["accuracy"]
     )
-
-    final_model_score = final_model.evaluate(
-        x_train, y_train, batch_size=BATCH_SIZE
-    )
-    # prev [0.01761356658373552, 0.9932
-    print("final_model (train score): {}".format(final_model_score))
-    print("final_model (train score): {}".format(final_model.metrics_names))
-
-    final_model_score = final_model.evaluate(
+    loss, acc = final_model.evaluate(
         x_test, y_test, batch_size=BATCH_SIZE
     )
-    # prev  [0.39406143480716793, 0.9333867]
-    print("final_model (test score): {}".format(final_model_score))
-    print("final_model (test score): {}".format(final_model.metrics_names))
 
-    if SAVE_MODEL:
-        final_model.save(SAVE_PATH)
+    print("final_model (test score) accuracy: {}".format(acc))
 
+    final_model.save(SAVE_PATH)
+
+"""
+Accuracy:
+0.9333867
+"""
 
 if __name__ == "__main__":
     main()
