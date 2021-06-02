@@ -1,6 +1,11 @@
 # Dogs and Cats ML
 Machine Learning model built to identify pictures between cats and dogs. Built with tensorflow and keras.
 
+## Layers
+The ML Model is built with a base model of VGG16 to determine features of the images and then a top layer model is used to dense down the features in a decision tree to classify the image. The top layer model features 2 Dense layers with a Dropout layer to leave the outliers followed by 2 more dense layers. The final dense layer uses an activation function of softmax to bring the data back to standard and classify the image as cat or dog.
+
+## Accuracy
+The Model was able to achieve a final test accuracy of 93.3 when evaluating the test data.
 
 ## Layout
 
